@@ -62,6 +62,28 @@ gpr.key=你的GitHub个人访问令牌
 
 ## 📚 发布新版本
 
+### 配置发布权限
+
+发布新库需要在 `~/.gradle/gradle.properties` 中配置具有**上传权限**的 GitHub 个人访问令牌。
+
+#### 创建发布用的 GitHub 个人访问令牌
+
+1. 访问 [GitHub Personal Access Tokens](https://github.com/settings/tokens)
+2. 点击 "Generate new token (classic)"
+3. 勾选权限：
+   - ✅ `write:packages` - 上传包到 GitHub Packages（必需）
+   - ✅ `read:packages` - 下载包
+   - ✅ `repo` - 访问仓库（如果是私有仓库则必需）
+   - ✅ `delete:packages` - 删除包（可选）
+4. 生成并复制令牌到 `~/.gradle/gradle.properties`：
+
+```properties
+gpr.user=你的GitHub用户名
+gpr.key=你的GitHub个人访问令牌
+```
+
+⚠️ **注意：** 下载依赖只需 `read:packages` 权限，但发布新库必须要有 `write:packages` 权限。
+
 ### 添加新的库
 
 1. 将 AAR 文件放入项目根目录
