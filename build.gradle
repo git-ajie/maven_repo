@@ -1,0 +1,47 @@
+plugins {
+    id 'maven-publish'
+}
+
+group = 'io.github.git-ajie'
+version = '1.0.0'
+
+
+apply from: 'artifacts.gradle'
+
+// 调试：打印认证信息
+println "=== GitHub Packages 认证信息 ==="
+println "gpr.user: ${project.findProperty('gpr.user')}"
+println "gpr.key: ${project.findProperty('gpr.key') ? '已配置 (长度: ' + project.findProperty('gpr.key').length() + ')' : '未配置'}"
+println "================================"
+
+publishing {
+    publications {
+        project.ext.artifactsToPublish.each { config ->
+            // 使用 artifactId 作为发布名称（需要是合法的标识符）
+            create(config.artifactId, MavenPublication) {
+                groupId = config.get('groupId', 'io.github.git-ajie') // 默认 groupId
+                artifactId = config.artifactId
+                version = config.version
+                
+                artifact("$projectDir/${config.fileName}") {
+                    extension 'aar'
+                }
+                
+                pom {
+                    packaging = 'aar'
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/git-ajie/maven_repo")
+            credentials {
+                username = project.findProperty("gpr.user")
+                password = project.findProperty("gpr.key")
+            }
+        }
+    }
+}

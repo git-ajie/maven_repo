@@ -1,0 +1,19 @@
+# Gradle 构建输出
+build/
+.gradle/
+
+# IDE 相关
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+
+# Mac OS
+.DS_Store
+
+# 本地配置（如果项目级别有 gradle.properties）
+gradle.properties
+
+# AAR 文件（因为是预构建的二进制文件，根据需要决定是否忽略）
+# *.aar

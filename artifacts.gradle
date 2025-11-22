@@ -1,0 +1,15 @@
+ext.artifactsToPublish = [
+    [
+        artifactId: 'ffmpeg-kit-https',
+        version: '6.0-2',
+        fileName: 'ffmpeg-kit-https-6.0-2.aar',
+        groupId: 'io.github.git-ajie'
+    ]
+    // 在这里添加更多构件
+    // [
+    //     artifactId: 'another-lib',
+    //     version: '1.2.0',
+    //     fileName: 'another-lib.aar',
+    //     groupId: 'com.example'
+    // ]
+]
